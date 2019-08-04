@@ -15,27 +15,27 @@ public class ClienteServiceImp implements IClienteService{
 	private IClienteDao clienteDao;
 	
 	@Override
-	@Transactional(readOnly = true)
+	@Transactional(readOnly = false)
 	public List<Cliente> findAll() {
 		return (List<Cliente>) clienteDao.findAll();
 	}
+	
 	@Override
-	@Transactional(readOnly = true)
+	@Transactional(readOnly = false)
 	public Cliente findById(Long id) {
-
 		return clienteDao.findById(id).orElse(null);
 	}
+	
 	@Override
-	@Transactional(readOnly = true)
+	@Transactional(readOnly = false)
 	public Cliente save(Cliente cliente) {
-
 		return clienteDao.save(cliente);
 	}
+	
 	@Override
-	@Transactional(readOnly = true)
+	@Transactional(readOnly = false)
 	public void delete(Long id) {
 		clienteDao.deleteById(id);
-		
 	}
 
 }
