@@ -1,9 +1,14 @@
 package com.capgemini.springboot.backend.apirest.controllers;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +27,8 @@ import com.capgemini.springboot.backend.apirest.models.services.IClienteService;
 @RestController
 @RequestMapping("/api")
 public class ClienteRestController {
-	
+	private ResponseEntity	respuesta ;
+	private final static Logger LOGGER = Logger.getLogger(Cliente.class.getName());
 	@Autowired
 	private IClienteService clienteService;
 	
@@ -32,14 +38,43 @@ public class ClienteRestController {
 	}
 	@GetMapping("/clientes/{id}")
 	//@ResponseStatus(HttpStatus.OK) SE CREA POR DEFECTO
-	public Cliente show(@PathVariable Long id) {
-		return clienteService.findById(id);
+	public ResponseEntity<?> show(@PathVariable Long id) {
+		Cliente	cliente=null;
+		
+		Map<String, Object> response = new HashMap<>();
+		
+	try  {
+		cliente = clienteService.findById(id);
+		respuesta = new ResponseEntity<Cliente>(cliente,HttpStatus.OK);
+	}catch (DataAccessException e) {
+		response.put("mensaje", "El cliente ID ".concat(id.toString().concat(" no existe en la base de datos!")));
+		respuesta =  new ResponseEntity<Map<String, Object>>( response,HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+		
+	return respuesta;
+	
 	}
 	
 	@PostMapping("/clientes")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Cliente create(@RequestBody Cliente cliente) {
-		return clienteService.save(cliente);
+	public ResponseEntity<?> create(@RequestBody Cliente cliente) {
+	
+		
+		Map<String, Object> response = new HashMap<>();
+		Cliente clienteNew = null;
+		
+		try  {
+			clienteNew = clienteService.save(cliente);
+			response.put("mensaje", "Se ha actualizado el cliente!");
+			response.put("cliente", clienteNew);
+			respuesta = new ResponseEntity<Map<String, Object>>(response,HttpStatus.CREATED);
+			
+		}catch (DataAccessException e) {
+			response.put("mensaje", "Error al realizar el insert en la base de datos!");
+			respuesta =  new ResponseEntity<Map<String, Object>>( response,HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+		return respuesta;
 	}
 	
 	@PutMapping("/clientes/{id}")
