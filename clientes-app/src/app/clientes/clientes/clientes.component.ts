@@ -3,6 +3,7 @@ import { Cliente } from '../cliente';
 import { ClienteServicesService } from 'src/app/services/cliente-services.service';
 
 
+
 @Component({
   selector: 'app-clientes',
   templateUrl: './clientes.component.html',
@@ -15,8 +16,13 @@ export class ClientesComponent implements OnInit {
 
   ngOnInit() {
     this.clienteService.getClientes().subscribe(
-      clientes => this.clientes = clientes 
+      clientes => this.clientes = clientes
     );
   }
+  delete(cliente: Cliente): void {
 
+    this.clienteService.delete(cliente.id).subscribe(response =>
+      this.clientes = this.clientes.filter(cli => cli !== cliente)
+    )
+  }
 }

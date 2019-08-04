@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormComponent } from './clientes/form/form.component';
 import { FormsModule } from '@angular/forms';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +24,8 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserModule, HttpClientModule,
-    AppRoutingModule,FormsModule
+    AppRoutingModule,FormsModule,
+
   ],
   providers: [ClienteServicesService],
   bootstrap: [AppComponent]

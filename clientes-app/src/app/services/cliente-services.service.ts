@@ -23,7 +23,8 @@ export class ClienteServicesService {
   }
 
   create(cliente: Cliente): Observable<Cliente> {
-    return this.http.post<Cliente>(this.url, cliente, { headers: this.httpHeaders })
+    
+    return this.http.post<Cliente>(this.url, cliente, { headers: this.httpHeaders });
   }
 
   getCliente(id:number): Observable<Cliente> {
@@ -31,11 +32,11 @@ export class ClienteServicesService {
   }
 
   update(cliente: Cliente): Observable<Cliente> {
-    return this.http.put<Cliente>(`${this.url}/${cliente.id}`, cliente, { headers: this.httpHeaders })
+    return this.http.put<Cliente>(`${this.url}/${cliente.id}`, cliente, { headers: this.httpHeaders });
   }
 
   delete(id: number): Observable<Cliente> {
-    return this.http.delete<Cliente>(`${this.url}/${id}`, { headers: this.httpHeaders })
+    return this.http.delete<Cliente>(`${this.url}/${id}`, { headers: this.httpHeaders });
   }
 
 }
