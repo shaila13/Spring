@@ -5,17 +5,17 @@
 <title>Pagina Principal</title>
 </head>
 <body>
-	<!-- 
-	<h1 th:text="${mensaje}">Bienvenido a Empleos</h1>
-	<h2>Hoy es [[${fecha}]]</h2>
-	-->
+
+<!-- Hay que ejecutarlo en esta dirección sin la s -> http://localhost:8080/  -->
+ <!-- <h1 th:text="${mensaje}">Bienvenido a Empleos</h1>
+ <h2>Hoy es [[${fecha}]]</h2><!-- Otra manera de renderizar datos  -->
 	
 	<h1>Bienvenido</h1>
 	<h2>Oferta de Trabajo</h2>
-	<h3 th:text="'Titulo:' + ${nombre} "></h3>
-	<h3 th:text="'Fecha Pub:' + ${fecha} "></h3>
-	<h3 th:text="'Salario Ofrecido:' + ${salario} "></h3>
-	<h3 th:text="'Vigente:' + ${vigente} "></h3>
+	<h3 th:text="'Titulo: ' + ${nombre} "></h3>
+	<h3 th:text="'Fecha Pub: ' + ${fecha} "></h3>
+	<h3 th:text="'Salario Ofrecido: ' + ${salario} "></h3>
+	<h3 th:text="'Vigente: ' + ${vigente} "></h3>
 	
 </body>
 </html>

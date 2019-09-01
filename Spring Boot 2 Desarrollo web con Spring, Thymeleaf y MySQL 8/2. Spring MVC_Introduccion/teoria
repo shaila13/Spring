@@ -1,0 +1,13 @@
+Como modificar o hacer una plantilla nueva
+
+Botón derecho --> new html file --> nombramos, queremos meter por defecto thymeleaf --> xmlns:th="http://www.thymeleaf.org"
+
+Vamos a Window --> Preferences	--> Web --> HTML FILES --> Editor --> Templates --> Seleccionamos plantilla y modificamos.
+
+
+
+
+
+
+	
+

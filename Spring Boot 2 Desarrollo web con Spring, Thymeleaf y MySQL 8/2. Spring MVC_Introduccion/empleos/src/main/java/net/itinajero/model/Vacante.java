@@ -1,5 +1,4 @@
 package net.itinajero.model;
-
 import java.util.Date;
 
 public class Vacante {
@@ -76,5 +75,6 @@ public class Vacante {
 		return "Vacante [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", fecha=" + fecha
 				+ ", salario=" + salario + "]";
 	}
+
 
 }
